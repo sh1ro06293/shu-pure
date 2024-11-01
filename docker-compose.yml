@@ -1,0 +1,32 @@
+services:
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend/src:/app/frontend/src
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+
+  backend:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/src:/app/backend/src
+    ports:
+      - "8000:8000"
+    tty: true
+    stdin_open: true
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root # ルートユーザーのパスワード
+      MYSQL_DATABASE: shupure  # 作成するデータベース名
+      MYSQL_USER: shiro           # 新しいユーザー名
+      MYSQL_PASSWORD: shiro06293  # 新しいユーザーのパスワード
+    ports:
+      - "3307:3307"                         # MySQLのデフォルトポート
