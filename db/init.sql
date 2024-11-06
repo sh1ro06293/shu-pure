@@ -66,3 +66,4 @@ CREATE TABLE EnqueteTable (
     FOREIGN KEY (UserId) REFERENCES UserTable(Id),
     FOREIGN KEY (TagId) REFERENCES TagTable(Id)
 );
+

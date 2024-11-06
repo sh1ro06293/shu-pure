@@ -1,2 +1,7 @@
-uvicorn==0.30.6
-fastapi==0.115.0
+fastapi
+uvicorn
+databases
+sqlalchemy
+asyncmy
+passlib[bcrypt]
+pydantic
