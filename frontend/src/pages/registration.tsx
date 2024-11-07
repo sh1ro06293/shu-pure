@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
+import { createUser } from '../components/api/api';
 
 const Registration = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const onClickLogin = async () => {
-        console.log('Email:', email);
-        console.log('Password:', password);
-        // TODO:ここでログイン処理を行う
+    const [name, setName] = useState('');
+    
+    const onClickRegistration = async () => {
+        const data = { Name:name, Email: email, Password: password };
+        console.log('Registration Data:', data);
+        await createUser(data);
+        
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // フォームのデフォルトの送信を防ぐ
-        onClickLogin(); // ログイン処理を呼び出す
+        onClickRegistration(); // ログイン処理を呼び出す
     };
 
     return (
@@ -21,7 +24,12 @@ const Registration = () => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">名前:</label>
-                    <input type="text" id="name" name="name" required/>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        value={name}
+                        onChange={(e) => setName(e.target.value)} 
+                        required/>
                 </div>
                 <div>
                     <label htmlFor="email">Email:</label>

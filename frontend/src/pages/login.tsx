@@ -7,7 +7,7 @@ const Login = () => {
     const onClickLogin = async () => {
         console.log('Email:', email);
         console.log('Password:', password);
-        // TODO:ここでログイン処理を行う
+        const data = { Email: email, Password: password };
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

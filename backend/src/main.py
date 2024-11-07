@@ -16,13 +16,11 @@ origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
 
 
 @app.get("/")
@@ -37,14 +35,14 @@ async def login():
     return response
 
 
-# ユーザー登録エンドポイント
+@app.post("/register")
 async def register_user(user: UserCreate, db: AsyncSession = Depends(get_db)):
     stmt = select(User).where(User.Email == user.Email)
     result = await db.execute(stmt)
     existing_user = result.scalar_one_or_none()
 
     if existing_user:
-        raise HTTPException(status_code=400, detail="Email already registered")
+        raise HTTPException(status_code=400, detail="すでにメースアドレスが使用されています。")
 
     # パスワードをハッシュ化して保存
     hashed_password = hash_password(user.Password)
