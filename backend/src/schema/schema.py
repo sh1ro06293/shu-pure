@@ -1,4 +1,6 @@
 from typing import Optional
+from typing import List
+
 
 from pydantic import BaseModel, Field, EmailStr
 
@@ -8,3 +10,14 @@ class UserCreate(BaseModel):
     Email: EmailStr
     Password: str
 
+class Message(BaseModel):
+    role: str
+    content: str
+
+class Messagas(BaseModel):
+    messages: List[Message]
+    def length(self)->int:
+        return len(self.messages)
+
+    def getmessage(self, index)->Message:
+        return self.messages[index]

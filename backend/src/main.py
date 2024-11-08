@@ -7,9 +7,10 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.future import select
 from contextlib import asynccontextmanager
 
-from .schema.schema import UserCreate
+from .schema.schema import UserCreate, Messagas
 from .database.database import get_db, create_item
 from .database.models import User
+from .post import post_appi , prompt
 
 app = FastAPI()
 origins = ["*"]
@@ -55,6 +56,18 @@ async def register_user(user: UserCreate, db: AsyncSession = Depends(get_db)):
 def hash_password(password: str) -> str:
     # ハッシュ化関数の実装
     return hashlib.sha256(password.encode()).hexdigest()
+
+
+@app.post("/chat")
+async def chat(messages: Messagas):
+    messages_list = []
+    messages_list.append(dict(prompt))
+    for i in range(messages.length()):
+        messages_list.append(dict(messages.getmessage(i)))
+
+    print(messages_list)
+    response = await post_appi(messages_list)
+    return response
 
 
 if __name__ == "__main__":

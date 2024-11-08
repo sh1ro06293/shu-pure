@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const onClickLogin = async () => {
         console.log('Email:', email);
@@ -13,6 +16,9 @@ const Login = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // フォームのデフォルトの送信を防ぐ
         onClickLogin(); // ログイン処理を呼び出す
+    };
+    const handleRegistration = () => {
+        navigate('/registration');
     };
 
     return (
@@ -41,6 +47,8 @@ const Login = () => {
                 </div>
                 <button type="submit">Login</button>
             </form>
+             <button onClick={handleRegistration}>新規登録</button>
+
         </>
     );
 }

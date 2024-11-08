@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Header = () => {
     
     const navigate = useNavigate();
-     const handleLogin = () => {
+    const handleLogin = () => {
         navigate('/login');
     }
     const handleChat = () => {
