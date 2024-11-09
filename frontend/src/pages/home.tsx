@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Header from '../components/header';
+import { useUser } from '../components/usercontext';
 
 const Home = () => {
+    const { user, setUser } = useUser();
+    console.log(user);
     return (
         <>
             <Header />

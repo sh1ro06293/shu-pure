@@ -1,16 +1,28 @@
+import { log } from 'console';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../components/api/api';
+import { useUser } from '../components/usercontext';
 
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const { user, setUser } = useUser();
 
     const onClickLogin = async () => {
-        console.log('Email:', email);
-        console.log('Password:', password);
         const data = { Email: email, Password: password };
+        // TODO: ログイン処理を実装
+        const response = await login(data);
+        if (response) {
+            setUser({
+            id: response.data.id,
+            name: response.data.name,
+            email: response.data.email,
+            });
+            navigate('/');
+        }
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

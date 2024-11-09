@@ -1,4 +1,8 @@
 import axios from 'axios';
+import { useUser } from '../../components/usercontext';
+
+
+
 
 // Axiosのインスタンスを作成し、baseURLを設定
 export const fastapiUrl = axios.create({
@@ -18,10 +22,13 @@ export async function createUser(data: any) {
         }
     }
 }
+
 export async function login(data: any) {
     try {
         const response = await fastapiUrl.post('/login', data);
         console.log('Response:', response);
+
+        
         return response;
     } catch (error) {
         if (axios.isAxiosError(error)) {

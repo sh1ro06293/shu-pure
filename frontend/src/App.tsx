@@ -5,9 +5,11 @@ import Login from './pages/login';
 import Registration from './pages/registration';
 import Home from './pages/home'; 
 import Chat from './pages/chat';
+import { UserProvider } from './components/usercontext';
 
 const App = () => {
   return (
+    <UserProvider>
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -18,6 +20,7 @@ const App = () => {
         
       </Routes>
     </Router>
+    </UserProvider>
   );
 }
 
