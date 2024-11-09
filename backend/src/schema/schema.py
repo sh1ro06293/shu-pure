@@ -10,6 +10,10 @@ class UserCreate(BaseModel):
     Email: EmailStr
     Password: str
 
+class UserLogin(BaseModel):
+    Email: EmailStr
+    Password: str
+
 class Message(BaseModel):
     role: str
     content: str

@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.future import select
 from contextlib import asynccontextmanager
 
-from .schema.schema import UserCreate, Messagas
+from .schema.schema import UserCreate, Messagas, UserLogin
 from .database.database import get_db, create_item
 from .database.models import User
 from .post import post_appi , prompt
@@ -30,10 +30,21 @@ async def get_data():
     return response
 
 
-@app.get("/login")
-async def login():
-    response = {"message": "Login Page"}
-    return response
+@app.post("/login")
+async def login(user: UserLogin, db: AsyncSession = Depends(get_db)):
+    stmt = select(User).where(User.Email == user.Email)
+    result = await db.execute(stmt)
+    existing_user = result.scalar_one_or_none()
+
+    if existing_user:
+        hashed_password = hash_password(user.Password)
+
+        if existing_user.Password == hashed_password:
+            return {"id": existing_user.Id, "name": existing_user.Name, "email": existing_user.Email}
+        else:
+            raise HTTPException(status_code=400, detail="パスワードが間違っています。")
+    else:
+        raise HTTPException(status_code=400, detail="メールアドレスが間違っています。")
 
 
 @app.post("/register")
