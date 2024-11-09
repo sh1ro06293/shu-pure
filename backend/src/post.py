@@ -15,7 +15,8 @@ prompt = Message(
 
 async def post_appi(messegas):
 
-    url = os.getenv("API_URL")
+    # url = os.getenv("API_URL")
+    url = "http://127.0.0.1:8002/"
 
     payload = json.dumps(
         {
@@ -34,7 +35,6 @@ async def post_appi(messegas):
     )
 
     response_json = response.json()
-    print(response_json)
     # messagesを取り出す
     messages = Message(
         role=response_json["choices"][0]["message"]["role"],
