@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createUser } from '../components/api/api';
+import { useUser } from '../components/usercontext';
 
 const Registration = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+    const { user, setUser } = useUser();
+    const navigate = useNavigate();
     
     const onClickRegistration = async () => {
         const data = { Name:name, Email: email, Password: password };
         console.log('Registration Data:', data);
-        await createUser(data);
+        const response = await createUser(data);
+        if (response) {
+            setUser({
+                id: response.data.id,
+                name: response.data.name,
+                email: response.data.email,
+                });
+            navigate('/');
+        }
         
     };
 

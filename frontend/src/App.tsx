@@ -6,6 +6,7 @@ import Registration from './pages/registration';
 import Home from './pages/home'; 
 import Chat from './pages/chat';
 import { UserProvider } from './components/usercontext';
+import PrivateRoute from './components/root/privateRoute';
 
 const App = () => {
   return (
@@ -15,8 +16,10 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/chat" element={<Chat />} />
-
+        
+        <Route path="/chat" element={<PrivateRoute />}>
+        <Route path="" element={<Chat />} />
+        </Route>
         
       </Routes>
     </Router>
