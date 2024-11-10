@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { createUser } from '../components/api/api';
 import { useUser } from '../components/usercontext';
 
+
+
 const Registration = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

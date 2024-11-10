@@ -13,7 +13,6 @@ const Login = () => {
 
     const onClickLogin = async () => {
         const data = { Email: email, Password: password };
-        // TODO: ログイン処理を実装
         const response = await login(data);
         if (response) {
             setUser({
