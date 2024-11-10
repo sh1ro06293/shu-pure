@@ -23,7 +23,9 @@ const Chat = () => {
     useEffect(() => {
         const fetchData = async () => {
             if (shouldFetch) {
-                const response = await postChat(messages);
+                    const data = notFoodList?JSON.stringify({ "messages": messages, "notFoodList": notFoodList }): JSON.stringify({ "messages": messages });
+
+                const response = await postChat(data);
                 setMessages(prevMessages => [...prevMessages, response]);
                 setShouldFetch(false);
             }

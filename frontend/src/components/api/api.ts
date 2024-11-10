@@ -42,12 +42,12 @@ export async function login(data: any) {
 export async function postChat(data: any) {
     try {
         // データを適切な形式に変換
-        const requestData = JSON.stringify({ "messages": data });
+        const requestData = data
 
         console.log('Request Data:', requestData);
 
         // POSTリクエストを送信
-        const response = await fastapiUrl.post('/chat', requestData, {
+        const response = await fastapiUrl.post('/chat', data, {
             headers: {
                 'Content-Type': 'application/json' // ヘッダーにContent-Typeを追加
             }
