@@ -6,11 +6,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.future import select
 from contextlib import asynccontextmanager
+from typing import List, Optional
 
-from .schema.schema import UserCreate, Messagas, UserLogin
+from .schema.schema import UserCreate, Messagas, UserLogin, Message
 from .database.database import get_db, create_item
 from .database.models import User
-from .post import post_appi , prompt
+from .post import post_appi, prompt
 
 app = FastAPI()
 origins = ["*"]
@@ -40,7 +41,11 @@ async def login(user: UserLogin, db: AsyncSession = Depends(get_db)):
         hashed_password = hash_password(user.Password)
 
         if existing_user.Password == hashed_password:
-            return {"id": existing_user.Id, "name": existing_user.Name, "email": existing_user.Email}
+            return {
+                "id": existing_user.Id,
+                "name": existing_user.Name,
+                "email": existing_user.Email,
+            }
         else:
             raise HTTPException(status_code=400, detail="パスワードが間違っています。")
     else:
@@ -54,12 +59,14 @@ async def register_user(user: UserCreate, db: AsyncSession = Depends(get_db)):
     existing_user = result.scalar_one_or_none()
 
     if existing_user:
-        raise HTTPException(status_code=400, detail="すでにメースアドレスが使用されています。")
+        raise HTTPException(
+            status_code=400, detail="すでにメースアドレスが使用されています。"
+        )
 
     # パスワードをハッシュ化して保存
     hashed_password = hash_password(user.Password)
     new_user = User(Name=user.Name, Email=user.Email, Password=hashed_password)
-    await create_item(new_user,db)
+    await create_item(new_user, db)
 
     return {"id": new_user.Id, "name": new_user.Name, "email": new_user.Email}
 
@@ -73,6 +80,15 @@ def hash_password(password: str) -> str:
 async def chat(messages: Messagas):
     messages_list = []
     messages_list.append(dict(prompt))
+
+    if messages.notFoodList:
+        print(messages.notFoodList)
+        not_food_prompt = Message(
+            role="system",
+            content=f"{messages.notFoodList}は使用しないでください。",
+        )
+        messages_list.append(dict(not_food_prompt))
+
     for i in range(messages.length()):
         messages_list.append(dict(messages.getmessage(i)))
 
