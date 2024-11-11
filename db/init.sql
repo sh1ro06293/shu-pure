@@ -67,3 +67,10 @@ CREATE TABLE EnqueteTable (
     FOREIGN KEY (TagId) REFERENCES TagTable(Id)
 );
 
+CREATE TABLE ChatRecipeTable (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    UserId INT NOT NULL,
+    Recipe TEXT NOT NULL,
+    FOREIGN KEY (UserId) REFERENCES UserTable(Id)
+);
+

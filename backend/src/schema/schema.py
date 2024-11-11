@@ -30,3 +30,8 @@ class Messagas(BaseModel):
 
     def getmessage(self, index) -> Message:
         return self.messages[index]
+
+
+class SaveMessage(BaseModel):
+    message: str
+    user_id: int

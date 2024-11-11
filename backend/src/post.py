@@ -30,9 +30,7 @@ async def post_appi(messegas):
         "Authorization": f"Bearer {os.getenv('API_KEY')}",  # ダブルクォートを修正
     }
 
-    response = requests.post(
-        url, headers=headers, data=payload
-    )
+    response = requests.post(url, headers=headers, data=payload)
 
     response_json = response.json()
     # messagesを取り出す

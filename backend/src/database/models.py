@@ -11,3 +11,11 @@ class User(Base):
     Name = Column(String, nullable=False)
     Email = Column(String, nullable=False, unique=True)
     Password = Column(String, nullable=False)
+
+
+class ChatRecipe(Base):
+    __tablename__ = "ChatRecipeTable"
+
+    Id = Column(Integer, primary_key=True)
+    UserId = Column(Integer, nullable=False)
+    Recipe = Column(String, nullable=False)

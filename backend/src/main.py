@@ -8,9 +8,10 @@ from sqlalchemy.future import select
 from contextlib import asynccontextmanager
 from typing import List, Optional
 
-from .schema.schema import UserCreate, Messagas, UserLogin, Message
+from .schema.schema import UserCreate, Messagas, UserLogin, Message, SaveMessage
 from .database.database import get_db, create_item
-from .database.models import User
+from .database.models import User, ChatRecipe
+from .database.models import User, ChatRecipe
 from .post import post_appi, prompt
 
 app = FastAPI()
@@ -95,6 +96,17 @@ async def chat(messages: Messagas):
     print(messages_list)
     response = await post_appi(messages_list)
     return response
+
+
+@app.post("/save_recipe")
+async def save_chat(item: SaveMessage, db: AsyncSession = Depends(get_db)):
+    recipe = item.message
+    user_id = item.user_id
+    print(recipe, user_id)
+
+    chat_recipe = ChatRecipe(UserId=user_id, Recipe=recipe)
+    await create_item(chat_recipe, db)
+    return {"message": "レシピを保存しました。"}
 
 
 if __name__ == "__main__":

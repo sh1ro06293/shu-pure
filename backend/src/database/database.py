@@ -23,6 +23,7 @@ AsyncSessionLocal = sessionmaker(
     bind=engine, expire_on_commit=False, class_=AsyncSession
 )
 
+
 # 非同期セッションを生成する依存関数
 async def get_db():
     async with AsyncSessionLocal() as session:
