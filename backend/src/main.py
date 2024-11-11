@@ -109,5 +109,23 @@ async def save_chat(item: SaveMessage, db: AsyncSession = Depends(get_db)):
     return {"message": "レシピを保存しました。"}
 
 
+@app.get("/save_recipe/{user_id}")
+async def get_chat_recipe_ids(user_id: int, db: AsyncSession = Depends(get_db)):
+    stmt = select(ChatRecipe).where(ChatRecipe.UserId == user_id)
+    result = await db.execute(stmt)
+    chat_recipes = result.scalars().all()
+
+    if not chat_recipes:
+        raise HTTPException(
+            status_code=404, detail="このユーザーのレシピは見つかりません。"
+        )
+
+    # レシピのIDだけを抽出
+    recipes = [recipe.Recipe for recipe in chat_recipes]
+    print(recipes)
+
+    return {"recipes": recipes}
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")

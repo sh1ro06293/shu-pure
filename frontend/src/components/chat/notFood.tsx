@@ -19,7 +19,6 @@ const NotFood: React.FC<NotFoodProps> = ({ increment,notFoodList,setNotFoodList}
     };
 
     const onSave = () => {
-        // TODO: 保存処理を実装する
         increment();
     };
     return (
