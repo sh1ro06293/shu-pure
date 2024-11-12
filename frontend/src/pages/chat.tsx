@@ -6,6 +6,7 @@ import NotFood from '../components/chat/notFood';
 import Input from '../components/chat/input'; // Inputコンポーネントをインポート
 import { useUser } from '../components/usercontext';
 import ModalSaveRecipe from '../components/chat/modalSaveRecipe';
+import ChatMessagesList from '../components/chat/chatMessagesList';
 
 
 Modal.setAppElement('#root');
@@ -38,13 +39,6 @@ const Chat = () => {
     }, [shouldFetch, messages]);
 
 
-    const onSave = async (message: string) => {
-        const data = JSON.stringify({"message": message,"user_id": user.id  });
-        console.log(data);
-        const response = await saveRecipe(data);
-        console.log(response);
-    };
-
 
     return (
         <>
@@ -60,16 +54,7 @@ const Chat = () => {
                 </Modal>
 
                 <h1>chat</h1>
-                {messages.map((message, index) => (
-                    message.role === 'assistant' ? (
-                        <div key={index} className={message.role}>
-                            {message.content}
-                            <button onClick={() => onSave(message.content)}>レシピを保存する</button>
-                        </div>
-                    ) : (
-                        <div key={index} className={message.role}>{message.content}</div>
-                    )
-                ))}
+                <ChatMessagesList messages={messages} />
                 <Input onSubmit={handleInputSubmit} />
             </div>
         </>
