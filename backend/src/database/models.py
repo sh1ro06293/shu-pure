@@ -19,3 +19,6 @@ class ChatRecipe(Base):
     Id = Column(Integer, primary_key=True)
     UserId = Column(Integer, nullable=False)
     Recipe = Column(String, nullable=False)
+    Title = Column(String, nullable=False)
+    Food = Column(String, nullable=False)
+    Drink = Column(String, nullable=False)

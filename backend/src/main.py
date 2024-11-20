@@ -99,12 +99,23 @@ async def chat(messages: Messagas):
 
 
 @app.post("/save_recipe")
-async def save_chat(item: SaveMessage, db: AsyncSession = Depends(get_db)):
-    recipe = item.message
-    user_id = item.user_id
-    print(recipe, user_id)
+async def save_chat(items: SaveMessage, db: AsyncSession = Depends(get_db)):
+    item = items.message
+    user_id = items.user_id
+    # print(recipe, user_id)
+    titele = item.split("\n")[0].split("：")[1]
+    food = item.split("材料：")[1].split("作り方：")[0]
+    recipe = item.split("作り方：")[1].split("お酒のおすすめ：")[0]
+    drink = item.split("お酒のおすすめ：")[1]
 
-    chat_recipe = ChatRecipe(UserId=user_id, Recipe=recipe)
+    print(food)
+    print(recipe)
+    print(drink)
+
+    chat_recipe = ChatRecipe(
+        UserId=user_id, Recipe=recipe, Title=titele, Food=food, Drink=drink
+    )
+
     await create_item(chat_recipe, db)
     return {"message": "レシピを保存しました。"}
 
@@ -120,8 +131,10 @@ async def get_chat_recipe_ids(user_id: int, db: AsyncSession = Depends(get_db)):
             status_code=404, detail="このユーザーのレシピは見つかりません。"
         )
 
-    # レシピのIDだけを抽出
-    recipes = [recipe.Recipe for recipe in chat_recipes]
+    recipes = []
+    for chat_recipe in chat_recipes:
+        recipe = {"message": chat_recipe.Title, "id": chat_recipe.Id}
+        recipes.append(recipe)
     print(recipes)
 
     return {"recipes": recipes}

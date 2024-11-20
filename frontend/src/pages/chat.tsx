@@ -13,6 +13,7 @@ Modal.setAppElement('#root');
 
 const Chat = () => {
     const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
+
     const [shouldFetch, setShouldFetch] = useState(false);
     const [notFoodListModalIsOpen, setnotFoodListModalIsOpen] = useState(false);
     const [saveRecipeModalIsOpen, setSaveRecipeModalIsOpen] = useState(false);
