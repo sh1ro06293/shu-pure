@@ -17,6 +17,9 @@ const Header = () => {
     const handleHome = () => {
         navigate('/');
     }
+    const handleChatRecipeHistory = () => {
+        navigate('/chatRecipeHistory');
+    }
     const handleLogout = () => {
         setUser({
             id: null,
@@ -24,6 +27,7 @@ const Header = () => {
             email: '',
         });
         navigate('/');
+        window.location.reload();
     }
     return (
         <>
@@ -31,7 +35,7 @@ const Header = () => {
                 <h1 onClick={handleHome}>おつまみ帳</h1>
             <div className="header_btn">
             <button onClick={handleChat}>チャット相談</button>
-            <button>レシピの投稿（url適当）</button>
+            <button onClick={handleChatRecipeHistory}>保存したレシピ</button>
             {(userId)?
             <div>
                 <p>{name}</p>

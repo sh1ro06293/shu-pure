@@ -140,5 +140,30 @@ async def get_chat_recipe_ids(user_id: int, db: AsyncSession = Depends(get_db)):
     return {"recipes": recipes}
 
 
+@app.get("/save_recipe/{user_id}/{recipeid}")
+async def get_chat_recipe_ids(
+    user_id: int, recipeid: int, db: AsyncSession = Depends(get_db)
+):
+    print(user_id, recipeid)
+    # 条件を修正: "and" ではなく "&" を使う（SQLAlchemyの条件式）
+    stmt = select(ChatRecipe).where(
+        (ChatRecipe.UserId == user_id) & (ChatRecipe.Id == recipeid)
+    )
+    result = await db.execute(stmt)
+    chat_recipe = result.scalars().first()  # 単一の結果を取得
+
+    if not chat_recipe:
+        raise HTTPException(
+            status_code=404, detail="このユーザーのレシピは見つかりません。"
+        )
+    data = {
+        "title": chat_recipe.Title,
+        "recipe": chat_recipe.Recipe,
+        "food": chat_recipe.Food,
+        "drink": chat_recipe.Drink,
+    }
+    return {"message": data}
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")

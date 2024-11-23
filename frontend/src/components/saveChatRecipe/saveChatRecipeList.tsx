@@ -1,19 +1,21 @@
 import React ,{ useEffect, useState} from 'react';
 import { useUser } from '../usercontext';
-import { getSaveChatRecipe } from '../api/api';
-
+import { getSaveChatRecipeTitels } from '../api/api';
+import { useNavigate } from 'react-router-dom';
 
 
 const SaveChatRecipeList: React.FC = () => {
+
+    const navigate = useNavigate();
     
     const { user } = useUser();
-    const [messages, setMessages] = useState<{ message:string }[]>([]);
+    const [messages, setMessages] = useState<{ message:string, id:number }[]>([]);
 
     const user_id = user.id;
     useEffect(() => {
         const fetchData = async () => {
             if (user_id !== null) {
-                const response = await getSaveChatRecipe(user_id);
+                const response = await getSaveChatRecipeTitels(user_id);
                 console.log(response);
                 setMessages(response);
             } else {
@@ -24,18 +26,22 @@ const SaveChatRecipeList: React.FC = () => {
     }, [user_id]);
 
     console.log(messages);
-    const onclickTitle = (index:number) => {
+    const onclickTitle = (id:number) => {
+        // saveChatRecipe.tsxに遷移させるコードを書いて
+        // その際にidを渡してあげてください
+        navigate(`/saveChatRecipe/${id}`,{ state: { "recipeId": id } });
 
     }
  
 
     return (
         <>
-            <h1>保存したレシピ</h1>
+            <h1>保存したレシピ一覧</h1>
             <div>
+                {messages.length === 0 && <p>保存したレシピはありません</p>}
                 {messages.map((message, index) => ( 
                     <div key={index}>
-                        <button onClick={() => onclickTitle(index)}>
+                        <button onClick={() => onclickTitle(message.id)}>
                         {message.message}
                         </button>
                     </div>

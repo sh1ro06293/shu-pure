@@ -85,11 +85,25 @@ export async function saveRecipe(data:any){
 }
 
 
-export async function getSaveChatRecipe(user_id: number) {
+export async function getSaveChatRecipeTitels(user_id: number) {
     try {
         const response = await fastapiUrl.get(`/save_recipe/${user_id}`, {  headers: {  'Content-Type': 'application/json' }});
         console.log(response.data.recipes);
         return response.data.recipes;
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            alert(error.response?.data.detail);
+        } else {
+            console.error('Unexpected error:', error);
+        }
+    }
+}
+
+export async function getSaveChatRecipe(data:any){
+    try {
+        const response = await fastapiUrl.get(`/save_recipe/${data.user_id}/${data.recipeid}`, {  headers: {  'Content-Type': 'application/json' }});
+        console.log(response.data);
+        return response.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
             alert(error.response?.data.detail);

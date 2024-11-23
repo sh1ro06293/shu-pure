@@ -1,15 +1,16 @@
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import React, { ReactElement } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useUser } from '../usercontext';
 
-// 認証状態を管理するためのコンポーネント
-const PrivateRoute: React.FC = () => {
+interface PrivateRouteProps {
+  children: ReactElement;
+}
+
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   const { user } = useUser();
+  const isAuthenticated = true; // 認証ロジックをここに追加
 
-  // ユーザー情報があるかどうかで認証状態を判断
-  const isAuthenticated = !!user.id;
-
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+  return user.id ? children : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

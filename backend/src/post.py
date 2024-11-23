@@ -17,8 +17,8 @@ prompt = Message(
 
 async def post_appi(messegas):
 
-    # url = os.getenv("API_URL")
-    url = "http://127.0.0.1:8002/"
+    url = os.getenv("API_URL")
+    # url = "http://127.0.0.1:8002/"
 
     payload = json.dumps(
         {
