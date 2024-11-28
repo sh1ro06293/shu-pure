@@ -1,0 +1,38 @@
+header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    
+}
+
+.header_items {
+    width: 50%;
+    height: auto;
+    margin: auto auto;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.header_items h1 {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.header_items td {
+    padding: 10px;
+}
+
+.header_items button {
+    border: none;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.header_items button:hover {
+    background-color: #444343e1;
+    color: white;
+    border: 1px solid #ddd;
+}

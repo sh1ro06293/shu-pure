@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from './usercontext';
+import '../css/header.css';
     
 const Header = () => {
     const { user, setUser } = useUser();
@@ -32,17 +33,25 @@ const Header = () => {
     return (
         <>
             <header>
-                <h1 onClick={handleHome}>おつまみ帳</h1>
+            <div className="header_items">
+            <h1 onClick={handleHome}>おつまみ帳</h1>
             <div className="header_btn">
-            <button onClick={handleChat}>チャット相談</button>
-            <button onClick={handleChatRecipeHistory}>保存したレシピ</button>
+            <table>
+                <tr>
+                <td><button onClick={handleChat}>チャット相談</button></td>
+                <td><button onClick={handleChatRecipeHistory}>保存したレシピ</button></td>
             {(userId)?
-            <div>
-                <p>{name}</p>
-                <button onClick={handleLogout}>ログアウト</button>
-            </div>
-            :<button onClick={handleLogin}>ログイン</button>}
+            <td className='userdata'>
+                <td><p>{name}</p></td>
+                <td><button onClick={handleLogout}>ログアウト</button></td>
+            </td>
+            :<td><button onClick={handleLogin}>ログイン</button></td>
+            }
+                    
+                </tr>
+            </table>
             </div> 
+            </div>
             </header>
         </>
     );

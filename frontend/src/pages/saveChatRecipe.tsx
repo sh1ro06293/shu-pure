@@ -46,11 +46,12 @@ const SaveChatRecipe = () => {
                     <div key={index}>
                         <h2>{message.title}</h2>
                         <h3>材料</h3>
-                        <p>{message.food}</p>
+                        <p dangerouslySetInnerHTML={{ __html: message.food.replace(/\r?\n/g, '<br>') }} />
                         <h3>作り方</h3>
-                        <p>{message.recipe}</p>
+                        <p dangerouslySetInnerHTML={{ __html: message.recipe.replace(/\r?\n/g, '<br>') }} />
+
                         <h3>合うお酒</h3>
-                        <p>{message.drink}</p>
+                        <p dangerouslySetInnerHTML={{ __html: message.drink.replace(/\r?\n/g, '<br>') }} />
                     </div>
                 )
             ))}
