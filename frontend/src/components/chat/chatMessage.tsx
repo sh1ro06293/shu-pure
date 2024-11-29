@@ -13,23 +13,21 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message, index }) => {
 
     const onSave = async (message:string ) => {
         const data = JSON.stringify({ "message": message, "user_id": user.id });
-        console.log(data);
         const response = await saveRecipe(data);
-        console.log(response);
         setIsSaved(true);   
     };
 
     return (
         <>
             {message.role === 'assistant' ? (
-                <div key={index} className={message.role}>
+                <div key={index} className={message.role} >
                     <p dangerouslySetInnerHTML={{ __html: message.content.replace(/\r?\n/g, '<br>') }} />
                     {!isSaved && (
                         <button onClick={() => onSave(message.content)}>レシピを保存する</button>
                     )}
                 </div>
             ) : (
-                <div key={index} className={message.role}>{message.content}</div>
+                <div key={index} className={message.role}><p>{message.content}</p></div>
             )}
         </>
     );

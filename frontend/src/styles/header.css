@@ -1,38 +1,49 @@
 header {
-    background-color: #f8f9fa;
+    background-color: #f2f0ef;
     border-bottom: 1px solid #ddd;
     width: 100%;
+    height: 8vh;
     
 }
 
 .header_items {
     width: 50%;
-    height: auto;
+    height: 100%;
     margin: auto auto;
     display: flex;
     justify-content: space-between;
     text-align: center;
+    vertical-align: middle;
 }
 
 .header_items h1 {
     cursor: pointer;
+    margin: auto;
+    margin-left: 0;
     font-size: 1.5rem;
     color: #333;
 }
 
+.header_items table {
+    margin-top: 10px;
+    height: 50%;
+}
+
 .header_items td {
     padding: 10px;
+    margin: auto;
 }
 
 .header_items button {
+    margin: auto;
     border: none;
-    background-color: #f8f9fa;
+    background-color: #f2f0ef;
+    font-size: 16px;
     padding: 10px 20px;
     border-radius: 5px;
 }
 
 .header_items button:hover {
-    background-color: #444343e1;
-    color: white;
-    border: 1px solid #ddd;
+    background-color: #f2f0ef;
+    color: #c0c0c0;
 }

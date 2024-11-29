@@ -19,9 +19,19 @@ const Input: React.FC<InputProps> = ({ onSubmit }) => {
         setText(''); // 入力フィールドをクリア
     };
 
+    const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            onClick(); // エンターキーが押されたときに送信処理を呼び出す
+        }
+    };
+
     return (
         <div className="input">
-            <input value={text} onChange={onChange} />
+            <input 
+                value={text} 
+                onChange={onChange} 
+                onKeyDown={onKeyDown} // エンターキーのイベントを追加
+            />
             <button onClick={onClick}>送信</button>
         </div>
     );

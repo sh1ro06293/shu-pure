@@ -7,6 +7,7 @@ import Input from '../components/chat/input'; // Inputコンポーネントを�
 import { useUser } from '../components/usercontext';
 import ModalSaveRecipe from '../components/chat/modalSaveRecipe';
 import ChatMessagesList from '../components/chat/chatMessagesList';
+import '../styles/chat.css';
 
 
 Modal.setAppElement('#root');
@@ -45,8 +46,10 @@ const Chat = () => {
         <>
             <Header />
             <div className="content">
+                <div className="openModalButton">
                 <button onClick={() => setnotFoodListModalIsOpen(true)}>入れたくないものリスト</button>
                 <button onClick={() => setSaveRecipeModalIsOpen(true)}>保存したレシピ</button>
+            </div>
                 <Modal isOpen={notFoodListModalIsOpen}>
                     <NotFood notFoodList={notFoodList} setNotFoodList={setNotFoodList} increment={() => setnotFoodListModalIsOpen(false)} />
                 </Modal>
@@ -54,9 +57,11 @@ const Chat = () => {
                     <ModalSaveRecipe increment={() => setSaveRecipeModalIsOpen(false)} />
                 </Modal>
 
+                <div className='chat'>
                 <h1>chat</h1>
-                <ChatMessagesList messages={messages} />
-                <Input onSubmit={handleInputSubmit} />
+                    <ChatMessagesList messages={messages} />
+                    <Input onSubmit={handleInputSubmit} />
+                </div>
             </div>
         </>
     );

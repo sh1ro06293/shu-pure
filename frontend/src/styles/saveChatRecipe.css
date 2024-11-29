@@ -1,0 +1,32 @@
+.saveChatRecipe {
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    margin-top: 20px;
+    width: 80%;
+}
+.saveChatRecipe h1 {
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    text-align: center;
+}
+.recpis {
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    margin-top: 20px;    
+}
+
+.recpis button{
+    margin-bottom: 10px;
+    border: none;
+    background-color: #f8f9fa;
+    font-size:medium;
+}
+
+.recpis button:hover {
+    background-color: #c0c0c0;
+    color: black;
+    border: 1px solid #ddd;
+}

@@ -2,6 +2,7 @@ import React ,{ useEffect, useState} from 'react';
 import { useUser } from '../usercontext';
 import { getSaveChatRecipeTitels } from '../api/api';
 import { useNavigate } from 'react-router-dom';
+import '../../styles/saveChatRecipe.css';
 
 
 const SaveChatRecipeList: React.FC = () => {
@@ -35,9 +36,9 @@ const SaveChatRecipeList: React.FC = () => {
  
 
     return (
-        <>
+        <div className='saveChatRecipe'>
             <h1>保存したレシピ一覧</h1>
-            <div>
+            <div className='recpis'>
                 {messages.length === 0 && <p>保存したレシピはありません</p>}
                 {messages.map((message, index) => ( 
                     <div key={index}>
@@ -47,7 +48,7 @@ const SaveChatRecipeList: React.FC = () => {
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     );
 
 };

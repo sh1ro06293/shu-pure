@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from './usercontext';
-import '../css/header.css';
+import '../styles/header.css';
     
 const Header = () => {
     const { user, setUser } = useUser();
@@ -41,10 +41,10 @@ const Header = () => {
                 <td><button onClick={handleChat}>チャット相談</button></td>
                 <td><button onClick={handleChatRecipeHistory}>保存したレシピ</button></td>
             {(userId)?
-            <td className='userdata'>
+            <tr className='userdata'>
                 <td><p>{name}</p></td>
                 <td><button onClick={handleLogout}>ログアウト</button></td>
-            </td>
+            </tr>
             :<td><button onClick={handleLogin}>ログイン</button></td>
             }
                     

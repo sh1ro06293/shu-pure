@@ -2,16 +2,18 @@ import React, { useState } from 'react';
 import Header from '../components/header';
 import { useUser } from '../components/usercontext';
 import SaveChatRecipeList from '../components/saveChatRecipe/saveChatRecipeList';
+import '../styles/home.css';
 
 const Home = () => {
     const { user, setUser } = useUser();
-    console.log(user);
     return (
         <>
             <Header />
             <div className="main">
-                <h1>Home</h1>
-                <p>おつまみ帳へようこそ！</p>
+                <div className='home'>
+                    <h1>Home</h1>
+                    <p>おつまみ帳へようこそ！</p>
+                </div>
                 <SaveChatRecipeList />
 
                 
