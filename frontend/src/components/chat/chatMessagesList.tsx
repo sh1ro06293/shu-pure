@@ -7,7 +7,7 @@ interface ChatMessagesListProps {
 }
 
 const ChatMessagesList: React.FC<ChatMessagesListProps> = ({messages}) => {
-        const chatContainerRef = useRef<HTMLDivElement | null>(null);
+    const chatContainerRef = useRef<HTMLDivElement | null>(null);
 
     const scrollToBottom = () => {
         if (chatContainerRef.current) {

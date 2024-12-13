@@ -50,10 +50,10 @@ const Chat = () => {
                 <button onClick={() => setnotFoodListModalIsOpen(true)}>入れたくないものリスト</button>
                 <button onClick={() => setSaveRecipeModalIsOpen(true)}>保存したレシピ</button>
             </div>
-                <Modal isOpen={notFoodListModalIsOpen}>
+                <Modal className="modal-content" overlayClassName="modal-overlay" isOpen={notFoodListModalIsOpen}>
                     <NotFood notFoodList={notFoodList} setNotFoodList={setNotFoodList} increment={() => setnotFoodListModalIsOpen(false)} />
                 </Modal>
-                <Modal isOpen={saveRecipeModalIsOpen}>
+                <Modal className="modal-content" overlayClassName="modal-overlay" isOpen={saveRecipeModalIsOpen}>
                     <ModalSaveRecipe increment={() => setSaveRecipeModalIsOpen(false)} />
                 </Modal>
 
