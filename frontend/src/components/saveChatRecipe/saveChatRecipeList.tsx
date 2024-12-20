@@ -41,7 +41,7 @@ const SaveChatRecipeList: React.FC = () => {
             <div className='recpis'>
                 {messages.length === 0 && <p>保存したレシピはありません</p>}
                 {messages.map((message, index) => ( 
-                    <div key={index}>
+                    <div key={index} className='recipe'>
                         <button onClick={() => onclickTitle(message.id)}>
                         {message.message}
                         </button>

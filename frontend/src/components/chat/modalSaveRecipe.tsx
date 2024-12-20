@@ -13,10 +13,10 @@ const ModalSaveRecipe: React.FC<ModalSaveRecipeProps> = ({ increment}) => {
         increment();
     };
     return (
-        <>
-            <button onClick={onSave}>閉じる</button>
+        <div className='saveChatRecipeModal'>
+            <button className='closeBtn' onClick={onSave}>閉じる</button>
             <SaveChatRecipeList />
-        </>
+        </div>
     );
 }
 

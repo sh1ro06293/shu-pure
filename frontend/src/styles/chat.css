@@ -157,6 +157,64 @@
     -ms-writing-mode: tb-rl;
     writing-mode: vertical-rl;
 }
+.saveChatRecipeModal{
+    width: 100%;
+}
+.saveChatRecipeModal .closeBtn{
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    border-radius: 10px;
+    border: none;
+    background-color: #c0c0c0;
+    color: #333;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-flow: column;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.saveChatRecipeModal .closeBtn:hover {
+    background-color: #c0c0c0;
+    color: #fff;
+    border: 1px solid #ddd;
+}
+
+.saveChatRecipeModal .saveChatRecipe {
+   margin: auto;
+}
+
+.saveChatRecipeModal .saveChatRecipe .recpis {
+    display: flex;
+    text-align: center;
+    width: 80%;
+    padding-top: 5px;
+    flex-wrap: wrap;
+}
+
+.saveChatRecipeModal .saveChatRecipe .recpis button {
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: #3d474e;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    flex-flow: column;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.saveChatRecipeModal .saveChatRecipe .recpis button:hover {
+    background-color: #192230;
+    color: #fff;
+
+}
+
 
 .chat .chatMessage {
     overflow: auto;
@@ -172,7 +230,7 @@
     padding: 10px;
     border-radius: 10px;
     border: solid 2px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .chat .assistant button {
@@ -206,6 +264,6 @@
     padding: 10px;
     background-color: #ebe9e8;
     width: fit-content;
-    font-size: 16px;
+    font-size: 18px;
     margin: 0 10px 0 auto;
 }
