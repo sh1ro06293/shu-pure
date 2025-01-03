@@ -1,0 +1,44 @@
+.registrationContainer {
+    /* display: flex; */
+    margin: auto;
+    width: 50%;
+    background-color: #f5f5f5;
+}
+
+.registrationContainer h1 {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.registrationContainer form {
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.registrationContainer form div {
+    margin: 10px;
+}
+
+.registrationContainer form div label {
+    margin-right: 5px;
+}
+
+.registrationContainer form div input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.registrationContainer form button {
+    padding: 10px;
+    margin-left: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.registrationContainer form button:hover {
+    background-color: #e5e5e5;
+}

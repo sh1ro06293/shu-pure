@@ -2,7 +2,7 @@ import React ,{ useEffect, useState} from 'react';
 import { useUser } from '../usercontext';
 import { getSaveChatRecipeTitels } from '../api/api';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/saveChatRecipe.css';
+import '../../styles/saveChatRecipeList.css';
 
 
 const SaveChatRecipeList: React.FC = () => {

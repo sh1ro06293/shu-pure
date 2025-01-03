@@ -3,6 +3,7 @@ import { useUser } from '../components/usercontext';
 import { getSaveChatRecipe } from '../components/api/api';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/header';
+import '../styles/saveRecipe.css';
 
 const SaveChatRecipe = () => {
     const location = useLocation();
@@ -38,12 +39,12 @@ const SaveChatRecipe = () => {
     return (
         <>
         <Header />
-        <div>
+        <div className='saveChatRecipeContainer'>
             {messages.map((message, index) => (
                 typeof message === 'string' ? (
                     <h1 key={index}>{message}</h1>
                 ) : (
-                    <div key={index}>
+                    <div key={index} className='content'>
                         <h2>{message.title}</h2>
                         <h3>材料</h3>
                         <p dangerouslySetInnerHTML={{ __html: message.food.replace(/\r?\n/g, '<br>') }} />

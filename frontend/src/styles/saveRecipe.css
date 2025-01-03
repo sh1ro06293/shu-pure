@@ -1,0 +1,30 @@
+.saveChatRecipeContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+.saveChatRecipeContainer .content {
+    width: 70%;
+    height: 100%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #333;
+    background-color: #ebceb0;
+}
+
+.saveChatRecipeContainer .content h2 {
+    font-size: 25px;
+    text-align: center;
+}
+.saveChatRecipeContainer .content h3 {
+    font-size: 20px;
+    text-align: center;
+}
+.saveChatRecipeContainer .content p {
+    font-size: 16px;
+    margin: auto;
+}

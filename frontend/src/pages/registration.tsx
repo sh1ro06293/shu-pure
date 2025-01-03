@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUser } from '../components/api/api';
 import { useUser } from '../components/usercontext';
+import '../styles/registration.css';
 
 
 
@@ -33,11 +34,11 @@ const Registration = () => {
     };
 
     return (
-        <>
+        <div className='registrationContainer'>
             <h1>新規登録</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="name">名前:</label>
+                    <label htmlFor="name">名前 :</label>
                     <input 
                         type="text" 
                         id="name" 
@@ -46,7 +47,7 @@ const Registration = () => {
                         required/>
                 </div>
                 <div>
-                    <label htmlFor="email">Email:</label>
+                    <label htmlFor="email">Email :</label>
                     <input
                         type="email"
                         id="email"
@@ -56,7 +57,7 @@ const Registration = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">Password :</label>
                     <input
                         type="password"
                         id="password"
@@ -67,7 +68,7 @@ const Registration = () => {
                 </div>
                 <button type="submit">新規登録</button>
             </form>
-        </>
+        </div>
     );
 }
 

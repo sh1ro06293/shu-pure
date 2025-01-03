@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../components/api/api';
 import { useUser } from '../components/usercontext';
+import '../styles/login.css';
 
 
 const Login = () => {
@@ -33,11 +34,11 @@ const Login = () => {
     };
 
     return (
-        <>
+        <div className='loginContainer'>
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="email">Email:</label>
+                    <label htmlFor="email">Email :</label>
                     <input
                         type="email"
                         id="email"
@@ -47,7 +48,7 @@ const Login = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">Password :</label>
                     <input
                         type="password"
                         id="password"
@@ -57,10 +58,10 @@ const Login = () => {
                     />
                 </div>
                 <button type="submit">Login</button>
+                <button onClick={handleRegistration}>新規登録</button>
             </form>
-             <button onClick={handleRegistration}>新規登録</button>
 
-        </>
+        </div>
     );
 }
 
