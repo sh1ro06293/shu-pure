@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import Login from './pages/login';
+import Registration from './pages/registration';
+import Home from './pages/home'; 
+import Chat from './pages/chat';
+import SaveChatRecipe from './pages/saveChatRecipe';
+import { UserProvider } from './components/usercontext';
+import PrivateRoute from './components/root/privateRoute';
+import ChatRecipeHistory from './pages/chatRecipeHistory';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserProvider>
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
+
+          {/* Private Routes */}
+          <Route path="/chat" element={<PrivateRoute><Chat /></PrivateRoute>} />
+          <Route path="/saveChatRecipe/:recipeId" element={<PrivateRoute><SaveChatRecipe /></PrivateRoute>} />
+          <Route path="/chatRecipeHistory" element={<PrivateRoute><ChatRecipeHistory /></PrivateRoute>} />
+        </Routes>
+      </Router>
+    </UserProvider>
   );
-}
+};
 
 export default App;
