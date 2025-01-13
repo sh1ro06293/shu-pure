@@ -112,3 +112,30 @@ export async function getSaveChatRecipe(data:any){
         }
     }
 }
+
+export async function postLike(data:any){
+     try {
+        // データを適切な形式に変換
+        const requestData = data
+
+        console.log('Request Data:', requestData);
+
+        // POSTリクエストを送信
+        const response = await fastapiUrl.post('/like', data, {
+            headers: {
+                'Content-Type': 'application/json' // ヘッダーにContent-Typeを追加
+            }
+        });
+
+        console.log('Response:', response.data);
+        return response.data; // レスポンスデータを返す
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            // Axiosエラーの場合、詳細をアラート表示
+            console.error(error.response?.data.detail || 'An error occurred');
+        } else {
+            // その他のエラーの場合
+            console.error('Unexpected error:', error);
+        }
+    }
+}

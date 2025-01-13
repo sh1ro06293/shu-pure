@@ -15,7 +15,7 @@ const ModalSaveRecipe: React.FC<ModalSaveRecipeProps> = ({ increment}) => {
     return (
         <div className='saveChatRecipeModal'>
             <button className='closeBtn' onClick={onSave}>閉じる</button>
-            <SaveChatRecipeList />
+            <SaveChatRecipeList filter= {false} />
         </div>
     );
 }

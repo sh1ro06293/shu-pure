@@ -14,7 +14,7 @@ const Home = () => {
                     <h1>Home</h1>
                     <p>おつまみ帳へようこそ！</p>
                 </div>
-                <SaveChatRecipeList />
+                <SaveChatRecipeList filter= {false} />
 
             </div>
         </>
