@@ -55,15 +55,19 @@ const SaveChatRecipe = () => {
         <>
             <Header />
             <div className='saveChatRecipeContainer'>
-                <button onClick={onclickLike}>
-                    {like ? 'お気に入りから削除' : 'お気に入りに保存'}
-                </button>
                 {messages.map((message, index) => (
                     typeof message === 'string' ? (
                         <h1 key={index}>{message}</h1>
                     ) : (
                         <div key={index} className='content'>
-                            <h2>{message.title}</h2>
+                            <div className='titel'>
+                                <h2>{message.title}</h2>
+                                <div  className={like ? 'likeButton' : 'anotherButton'} >
+                                    <button onClick={onclickLike}>
+                                        {like ? 'お気に入り' : 'お気に入りに保存'}
+                                    </button>
+                                </div>
+                            </div>
                             <h3>材料</h3>
                             <p dangerouslySetInnerHTML={{ __html: message.food.replace(/\r?\n/g, '<br>') }} />
                             <h3>作り方</h3>
