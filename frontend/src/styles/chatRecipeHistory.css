@@ -1,0 +1,53 @@
+.chatRecipeHistory .content {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: #ebceb0;
+}
+
+.chatRecipeHistory .content .saveChatRecipe .title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center; 
+}
+.chatRecipeHistory .content .saveChatRecipe .title h1{
+    font-size: 25px;
+    text-align: center;
+}
+
+.chatRecipeHistory .content .saveChatRecipe .title button {
+    background-color: #c0c0c0;
+    color: #333;
+    margin-left: 10px;
+    border: none;
+    width: 180px;
+    height: 50px;
+}
+
+.chatRecipeHistory .content .saveChatRecipe .recpis{
+    width: 50%;
+    height: auto;
+}
+
+.chatRecipeHistory .content .saveChatRecipe .recpis button {
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: #3d474e;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    flex-flow: column;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.chatRecipeHistory .content .saveChatRecipe .recpis button:hover {
+    background-color: #192230;
+    color: #fff;
+}

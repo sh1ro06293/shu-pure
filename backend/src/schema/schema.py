@@ -35,3 +35,8 @@ class Messagas(BaseModel):
 class SaveMessage(BaseModel):
     message: str
     user_id: int
+
+
+class LikeRecipe(BaseModel):
+    recipeid: int
+    like: bool

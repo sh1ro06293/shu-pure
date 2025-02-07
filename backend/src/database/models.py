@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -22,3 +22,4 @@ class ChatRecipe(Base):
     Title = Column(String, nullable=False)
     Food = Column(String, nullable=False)
     Drink = Column(String, nullable=False)
+    LikeRecipe = Column(Boolean, nullable=False)

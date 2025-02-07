@@ -8,7 +8,14 @@ from sqlalchemy.future import select
 from contextlib import asynccontextmanager
 from typing import List, Optional
 
-from .schema.schema import UserCreate, Messagas, UserLogin, Message, SaveMessage
+from .schema.schema import (
+    UserCreate,
+    Messagas,
+    UserLogin,
+    Message,
+    SaveMessage,
+    LikeRecipe,
+)
 from .database.database import get_db, create_item
 from .database.models import User, ChatRecipe
 from .database.models import User, ChatRecipe
@@ -107,13 +114,19 @@ async def save_chat(items: SaveMessage, db: AsyncSession = Depends(get_db)):
     food = item.split("材料：")[1].split("作り方：")[0]
     recipe = item.split("作り方：")[1].split("お酒のおすすめ：")[0]
     drink = item.split("お酒のおすすめ：")[1]
+    likeRecipe = False
 
     print(food)
     print(recipe)
     print(drink)
 
     chat_recipe = ChatRecipe(
-        UserId=user_id, Recipe=recipe, Title=titele, Food=food, Drink=drink
+        UserId=user_id,
+        Recipe=recipe,
+        Title=titele,
+        Food=food,
+        Drink=drink,
+        LikeRecipe=likeRecipe,
     )
 
     await create_item(chat_recipe, db)
@@ -126,14 +139,13 @@ async def get_chat_recipe_ids(user_id: int, db: AsyncSession = Depends(get_db)):
     result = await db.execute(stmt)
     chat_recipes = result.scalars().all()
 
-    if not chat_recipes:
-        raise HTTPException(
-            status_code=404, detail="このユーザーのレシピは見つかりません。"
-        )
-
     recipes = []
     for chat_recipe in chat_recipes:
-        recipe = {"message": chat_recipe.Title, "id": chat_recipe.Id}
+        recipe = {
+            "message": chat_recipe.Title,
+            "id": chat_recipe.Id,
+            "like": chat_recipe.LikeRecipe,
+        }
         recipes.append(recipe)
     print(recipes)
 
@@ -161,8 +173,34 @@ async def get_chat_recipe_ids(
         "recipe": chat_recipe.Recipe,
         "food": chat_recipe.Food,
         "drink": chat_recipe.Drink,
+        "like": chat_recipe.LikeRecipe,
     }
     return {"message": data}
+
+
+@app.post("/like")
+async def post_like_recipe(items: LikeRecipe, db: AsyncSession = Depends(get_db)):
+    recipe_id = items.recipeid
+
+    # レシピを取得
+    query = select(ChatRecipe).where(ChatRecipe.Id == recipe_id)
+    result = await db.execute(query)
+    recipe = result.scalars().one_or_none()
+
+    if recipe is None:
+        raise HTTPException(status_code=404, detail="Recipe not found")
+
+    # LikeRecipe フィールドを更新
+    recipe.LikeRecipe = items.like
+
+    # 更新をコミット
+    try:
+        await db.commit()
+    except Exception as e:
+        await db.rollback()
+        raise HTTPException(status_code=500, detail="Failed to update recipe like")
+
+    return {"message": "Recipe like updated successfully"}
 
 
 if __name__ == "__main__":

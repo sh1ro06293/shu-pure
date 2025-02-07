@@ -12,7 +12,7 @@
 .main .saveChatRecipe{
     margin: auto;
     width: 50%;
-    height: 100%;
+    height: auto;
     padding: 20px;
     border-radius: 10px;
     border: solid 2px;
@@ -53,6 +53,9 @@
     text-decoration: none;
     flex-flow: column;
     font-size: clamp(10px, 1.8vw, 16px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     margin: 4px 2px;
     cursor: pointer;
 }

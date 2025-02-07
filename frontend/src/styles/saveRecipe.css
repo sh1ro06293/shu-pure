@@ -16,6 +16,33 @@
     background-color: #ebceb0;
 }
 
+.saveChatRecipeContainer .content .titel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.saveChatRecipeContainer .content .titel  .likeButton button{
+    background-color: #fce357;
+    color: #333;
+    margin-left: 10px;
+    border: none;
+    width: 120px;
+    height: 30px;
+    
+}
+
+.saveChatRecipeContainer .content .titel .anotherButton button {
+    background-color: #3d474e;
+    color: #fff;
+    margin-left: 10px;
+    border: none;
+    width: 120px;
+    height: 30px;
+}
+
+
 .saveChatRecipeContainer .content h2 {
     font-size: 25px;
     text-align: center;
