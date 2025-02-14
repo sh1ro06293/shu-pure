@@ -1,12 +1,15 @@
 # front
-FROM node:20-alpine
+FROM node:20
 
-WORKDIR /frontend
+WORKDIR /usr/src/app
 
+# パッケージファイルをコピー
 COPY package*.json ./
 
-RUN npm install
+# 依存関係をインストール
+RUN npm install --legacy-peer-deps
 
+# アプリのソースコードをコピー
 COPY . .
 
 CMD ["npm", "start"]

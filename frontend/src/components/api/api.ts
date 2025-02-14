@@ -16,7 +16,7 @@ export async function createUser(data: any) {
         return response;
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            alert(error.response?.data.detail);
+            console.error(error.response?.data.detail);
         } else {
             console.error('Unexpected error:', error);
         }

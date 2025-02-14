@@ -17,7 +17,10 @@ DB_NAME = os.getenv("DB_NAME")
 print(DB_USER), print(DB_PASS), print(DB_NAME)
 
 # f-stringで環境変数を埋め込み
-DATABASE_URL = f"mysql+aiomysql://{DB_USER}:{DB_PASS}@localhost/{DB_NAME}"
+DATABASE_URL = (
+    f"mysql+aiomysql://{DB_USER}:{DB_PASS}@host.docker.internal:3306/{DB_NAME}"
+)
+print(DATABASE_URL)
 engine = create_async_engine(DATABASE_URL, echo=True)
 AsyncSessionLocal = sessionmaker(
     bind=engine, expire_on_commit=False, class_=AsyncSession

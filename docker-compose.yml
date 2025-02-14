@@ -1,0 +1,26 @@
+services:
+  back:
+    container_name: shupure-fastpai
+    ports:
+      - "8000:8000"
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/usr/src/backend
+  react:
+    container_name: shupure-react
+    hostname: localhost
+    ports:
+      - "3000:3000"
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+
+    tty: true
+    stdin_open: true
+volumes:
+  node_modules:
