@@ -1,7 +1,7 @@
 .content {
     width: 50%;
     margin: auto;
-    height: 91vh;
+    height: auto;
 }
 
 .chat {
@@ -218,7 +218,7 @@
 
 .chat .chatMessage {
     overflow: auto;
-    height: 70vh;
+    height: auto;
     width: 100%;
     scrollbar-width: none;
 }

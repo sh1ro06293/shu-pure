@@ -37,19 +37,22 @@ const Header = () => {
             <h1 onClick={handleHome}>おつまみ帳</h1>
             <div className="header_btn">
             <table>
-                <tr>
-                <td><button onClick={handleChat}>チャット相談</button></td>
-                <td><button onClick={handleChatRecipeHistory}>保存したレシピ</button></td>
-            {(userId)?
-            <tr className='userdata'>
-                <td><p>{name}</p></td>
-                <td><button onClick={handleLogout}>ログアウト</button></td>
-            </tr>
-            :<td><button onClick={handleLogin}>ログイン</button></td>
-            }
-                    
+    <tbody>
+        <tr>
+            <td><button onClick={handleChat}>チャット相談</button></td>
+            <td><button onClick={handleChatRecipeHistory}>保存したレシピ</button></td>
+            {userId ? (
+                <tr className='userdata'>
+                    <td><p>{name}</p></td>
+                    <td><button onClick={handleLogout}>ログアウト</button></td>
                 </tr>
-            </table>
+            ) : (
+                <td><button onClick={handleLogin}>ログイン</button></td>
+            )}
+        </tr>
+    </tbody>
+</table>
+
             </div> 
             </div>
             </header>
@@ -58,3 +61,5 @@ const Header = () => {
 }
 
 export default Header;
+
+
