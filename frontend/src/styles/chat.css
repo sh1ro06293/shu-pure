@@ -27,7 +27,7 @@
 .chat .input input {
     width: 100%;
     border-radius: 10px 0px 0px 10px;
-    font-size: 16px;
+    font-size: 18px;
 }
 .chat .input button {
     border-radius: 0px 10px 10px 0px;
@@ -49,7 +49,7 @@
     text-decoration: none;
     display: flex;
     flex-flow: column;
-    font-size: 16px;
+    font-size: 18px;
     margin: 4px 2px;
     cursor: pointer;
 }
@@ -112,7 +112,7 @@
     text-decoration: none;
     display: flex;
     flex-flow: column;
-    font-size: 16px;
+    font-size: 18px;
     margin: 4px 2px;
     cursor: pointer;
 }
@@ -125,7 +125,7 @@
 .notFood p{
     margin: 0;
     padding: 10px;
-    font-size: 16px;
+    font-size: 18px;
 }
 .notFoodModal .input {
     position: absolute;
@@ -140,7 +140,7 @@
 .notFoodModal .input input {
     width: 100%;
     border-radius: 10px 0px 0px 10px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .notFoodModal .input button {
@@ -153,7 +153,7 @@
     right: 22%;
     bottom: 10px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 18px;
     -ms-writing-mode: tb-rl;
     writing-mode: vertical-rl;
 }
@@ -173,7 +173,7 @@
     text-decoration: none;
     display: flex;
     flex-flow: column;
-    font-size: 16px;
+    font-size: 18px;
     margin: 4px 2px;
     cursor: pointer;
 }
@@ -217,10 +217,22 @@
 
 
 .chat .chatMessage {
-    overflow: auto;
-    height: auto;
+    overflow-y: auto;
+    /* 縦スクロールを有効化 */
+    max-height:900px;
+    /* 固定の高さを設定（適宜変更） */
     width: 100%;
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    /* スクロールバーを細くする */
+    scrollbar-color: transparent transparent;
+    /* スクロールバーを非表示に */
+}
+
+/* Webkit（Chrome, Safari）の場合のスクロールバー非表示 */
+.chat .chatMessage::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
 }
 
 .chat .chatMessage .assistant p {
@@ -243,7 +255,7 @@
     text-decoration: none;
     display: flex;
     flex-flow: column;
-    font-size: 16px;
+    font-size: 18px;
     margin: 4px 2px;
     cursor: pointer;
 }
